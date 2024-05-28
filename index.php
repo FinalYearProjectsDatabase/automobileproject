@@ -13,12 +13,16 @@
 
 
     <!--------------------------------- HEADER CART LIST START --------------------------------->
-    <?php require(__DIR__.'/components/index-header-cart.php')?>
+    <?php 
+    // require(__DIR__.'/components/index-header-cart.php')
+    ?>
     <!--------------------------------- HEADER CART LIST END --------------------------------->
 
 
     <!--------------------------------- HEADER WISH LIST START --------------------------------->
-    <?php require(__DIR__.'/components/index-header-wish.php')?>
+    <?php 
+    // require(__DIR__.'/components/index-header-wish.php')
+    ?>
     <!--------------------------------- HEADER WISH LIST END --------------------------------->
 
 
