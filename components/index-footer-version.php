@@ -1,5 +1,5 @@
 <footer class="footer rev-10-footer rev-14-footer">
-        <div class="main-footer">
+        <!-- <div class="main-footer">
             <div class="container">
                 <div class="custom-row">
                     <div class="custom-col-2">
@@ -77,18 +77,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="copyright">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p>&copy; Copyright Revel All Right Reserved</p>
+                        <p>&copy; Copyright fiX-AutoMobile</p>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="part-img d-flex justify-content-md-end justify-content-center">
                             <img src="assets/images/payment-gateway.png" alt="Image">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

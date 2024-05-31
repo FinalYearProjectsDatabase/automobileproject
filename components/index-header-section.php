@@ -44,8 +44,9 @@
             <div class="row justify-content-center justify-content-sm-between align-items-center g-lg-4 g-0">
                 <div class="col-xxl-3 col-lg-2 col-md-3 col-sm-3 col-5">
                     <div class="logo">
-                        <a href="index.html">
-                            <img src="assets/images/logos/logo-5.png" alt="logo">
+                        <a href="/">
+                            <!-- <img src="assets/images/logos/logo-5.png" alt="logo"> -->
+                            <p class="fw-bold text-danger ">fiX-AutoMobile</p>
                         </a>
                     </div>
                 </div>

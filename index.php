@@ -27,7 +27,9 @@
 
 
     <!--------------------------------- MOBILE MENU START --------------------------------->
-    <?php require(__DIR__.'/components/index-mobile-menu.php')?>
+    <?php 
+    // require(__DIR__.'/components/index-mobile-menu.php')
+    ?>
     <!--------------------------------- MOBILE MENU END --------------------------------->
 
 
