@@ -43,7 +43,7 @@
                         <li>
                             <div class="dropdown-txt text-center">
                                 <p class="mb-0"><?php echo $_SESSION['name']?></p>
-                                <span class="d-block">CEO & Founder</span>
+                                <span class="d-block"><?php echo $_SESSION['user_type_name']?></span>
                             </div>
                         </li>
                         <li><a class="dropdown-item" href=""><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Profile</a></li>
