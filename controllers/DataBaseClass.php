@@ -1,7 +1,5 @@
 <?php
 
-    require '../../../config/db-parameters.php';
-
     trait DataBaseClass{
         // username for database connection from the db parameters file
         protected $username = USERNAME;
