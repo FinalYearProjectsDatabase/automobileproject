@@ -13,6 +13,8 @@
                 'msg' => 'All fields are required'
             ];
         }else{
+            // database parameters
+            require '../../../config/db-parameters.php';
             // database class
             require('../../../controllers/DataBaseClass.php');
 
