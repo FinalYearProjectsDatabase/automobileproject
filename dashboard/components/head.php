@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | <?php echo basename('index-settings.php').PROJECT_NAME;?></title>
+    <title id="page-title">Dashboard | <?php echo basename('index-settings.php').PROJECT_NAME;?></title>
     
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
