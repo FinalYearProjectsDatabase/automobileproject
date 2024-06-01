@@ -13,3 +13,15 @@
         // Output the 36 character UUID.
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
+
+    function username($email)
+    {
+        $count_name = explode("@", strtolower($email));
+        return substr($count_name[0],0);
+    }
+
+    function RandomUserID($parameter, $length){
+        $base = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        $random = substr(str_shuffle($base), 0, $length);
+        return $parameter . $random;
+    }
