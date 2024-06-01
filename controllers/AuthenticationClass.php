@@ -10,6 +10,7 @@
         protected $redirect;
         public $response = [];
 
+        // method to redirect the logged in user to the specific page based on user type
         public function user_page_redirect($user_type){
             $this->user_type = $user_type;
             if($user_type == 1){
@@ -102,6 +103,7 @@
             return json_encode($this->response);
         }
 
+        // method to get user type name based on data which is the user type
         public function user_type_name($data){
             if($data == 1){
                 $name = 'Super Administrator' ?? '';
