@@ -4,6 +4,12 @@ $(document).ready(()=>{
         scrollX: true,
         search: true,
         paging: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '../../../../models/admin/user-client/server/clients-datatables.php',
+            method: 'GET'
+        },
         language: {
             paginate: {
                 next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
