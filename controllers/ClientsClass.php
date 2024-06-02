@@ -123,26 +123,26 @@ class ClientsClass{
 
         $connection->beginTransaction();
         try {
-            // insert new client in the clients table
-            $sqlIns = "UPDATE clients_table SET client_name = :name, client_username = :username, client_dob = :dob, client_address = :address, client_email = :email, client_contact = :contact WHERE client_user_id = :user_id";
-            $stmtIns = $connection->prepare($sqlIns);
-            $stmtIns->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-            $stmtIns->bindValue(':name', strtoupper($name), PDO::PARAM_STR);
-            $stmtIns->bindValue(':username', $user_name, PDO::PARAM_STR);
-            $stmtIns->bindValue(':dob', $dob, PDO::PARAM_STR);
-            $stmtIns->bindValue(':address', $address, PDO::PARAM_STR);
-            $stmtIns->bindValue(':contact', $contact, PDO::PARAM_STR);
-            $stmtIns->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmtIns->execute();
+            // update new client in the clients table
+            $sqlUpdate = "UPDATE clients_table SET client_name = :name, client_username = :username, client_dob = :dob, client_address = :address, client_email = :email, client_contact = :contact WHERE client_user_id = :user_id";
+            $stmtUpdate = $connection->prepare($sqlUpdate);
+            $stmtUpdate->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':name', strtoupper($name), PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':username', $user_name, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':dob', $dob, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':address', $address, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':contact', $contact, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmtUpdate->execute();
 
-            // insert new clients in users table for login purpose
-            $sqlLogin = "UPDATE users_table SET name = :name, username = :username, user_email = :user_email  WHERE user_id = :user_id";
-            $stmtLogin = $connection->prepare($sqlLogin);
-            $stmtLogin->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-            $stmtLogin->bindValue(':name', $name, PDO::PARAM_STR);
-            $stmtLogin->bindValue(':username', $user_name, PDO::PARAM_STR);
-            $stmtLogin->bindValue(':user_email', $email, PDO::PARAM_STR);
-            $stmtLogin->execute();
+            // update new clients in users table for login purpose
+            $sqlUpdate = "UPDATE users_table SET name = :name, username = :username, user_email = :user_email  WHERE user_id = :user_id";
+            $stmtUpdate = $connection->prepare($sqlUpdate);
+            $stmtUpdate->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':username', $user_name, PDO::PARAM_STR);
+            $stmtUpdate->bindValue(':user_email', $email, PDO::PARAM_STR);
+            $stmtUpdate->execute();
 
             $connection->commit();
 

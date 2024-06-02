@@ -22,6 +22,18 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-item">
+                <ul class="sidebar-link-group">
+                    <li class="sidebar-dropdown-item">
+                        <a href="<?php echo BASE_URL.'/dashboard/user-vendor/'; ?>" class="sidebar-link">
+                            <span class="nav-icon">
+                            <i class="fa-solid fa-user"></i>
+                            </span> 
+                            <span class="sidebar-txt">Vendors</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- <li class="sidebar-item">
                 <a role="button" class="sidebar-link-group-title has-sub">Apps</a>
                 <ul class="sidebar-link-group">
