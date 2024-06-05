@@ -14,7 +14,7 @@
     session_destroy();
 
     // redirect to login page
-    header('Location:../auth/login.php');
+    header('Location:../');
 
     // close any request or action
-    exit();
+    // exit();

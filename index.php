@@ -1,6 +1,7 @@
-<?php 
+<?php
+    session_start();
     require_once('config/index-settings.php');
-    require(__DIR__.'/components/index-head.php')
+    require(__DIR__.'/components/index-head.php');
 ?>
 
 <body class="rev-10-body">

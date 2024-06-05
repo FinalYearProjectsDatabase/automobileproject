@@ -14,7 +14,7 @@
 <!-- main content start -->
 <div class="main-content">
     <div class="dashboard-breadcrumb mb-30">
-        <h2>Clients</h2>
+        <h2>Vendors</h2>
     </div>
     <div class="row">
         <div class="alert" id="alert-notice"></div>

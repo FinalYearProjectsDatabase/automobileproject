@@ -12,7 +12,7 @@
     $user_type_name = "";
 
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['username']) || !isset($_SESSION['email']) || !isset($_SESSION['user_type']) || !isset($_SESSION['name']) || !isset($_SESSION['user_type_name'])){
-        header('Location:../auth/login.php');
+        header('Location:../');
         exit();
     }else{
         $user_id = $_SESSION['user_id'];

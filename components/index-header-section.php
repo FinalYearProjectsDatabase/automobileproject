@@ -1,113 +1,57 @@
 <div class="header rev-10-header rev-14-header">
-        <!-- <div class="top-header">
-            <div class="container">
-                <div class="row align-items-center justify-content-center gy-lg-4 gy-md-0 gy-4">
-                    <div class="col-xl-4 col-lg-7 order-xl-0 order-1 d-lg-block d-none">
-                        <ul class="top-header-link d-lg-flex d-none">
-                            <li><a href="mailto:test@example.com"><i class="fa-light fa-envelope"></i> test@example.com</a></li>
-                            <li><a href="tel:001-1234-88888"><i class="fa-light fa-phone"></i> 001-1234-88888</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6 order-xl-1 order-0">
-                        <p class="top-header-offer-txt">Get up to 80% off using 708050* this coupon code!</p>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6 col-lg-5 order-3">
-                        <ul class="top-header-link justify-content-md-end justify-content-center">
-                            <li>
-                                <a href="#"><i class="fa-light fa-location-dot"></i> Order Tracking </a>
-                            </li>
-                            <li>
-                                <select name="currency" id="currency" class="select">
-                                    <option value="USD">Dollar (USD)</option>
-                                    <option value="BDT">Taka (BDT)</option>
-                                </select>
-                            </li>
-                            <li>
-                                <div class="select-language">
-                                    <div class="language">
-                                        <div class="select-lang">
-                                            <div id="aw" data-input-name="country" data-selected-country="UK" data-scrollable-height="250px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     <div class="bottom-header">
         <div class="container">
             <div class="row justify-content-center justify-content-sm-between align-items-center g-lg-4 g-0">
                 <div class="col-xxl-3 col-lg-2 col-md-3 col-sm-3 col-5">
                     <div class="logo">
                         <a href="/">
-                            <!-- <img src="assets/images/logos/logo-5.png" alt="logo"> -->
                             <p class="fw-bold text-danger ">fiX-AutoMobile</p>
                         </a>
                     </div>
                 </div>
-                <div class="col-xxl-5 col-xl-6 col-lg-5 col-md-6 col-sm-5 col-12 search-col">
-                    <!-- <div class="header-search">
-                        <form>
-                            <div class="wrap">
-                                <select name="category" class="select">
-                                    <option value="">All Categories</option>
-                                    <option value="1">Women's Fashion</option>
-                                    <option value="2">Men's Fashion</option>
-                                    <option value="3">Photography </option>
-                                    <option value="4">Watches & Accessories</option>
-                                    <option value="5">TV & Home Appliances</option>
-                                    <option value="6">Bags & Shoes</option>
-                                    <option value="7">Toys , Kids & Babies</option>
-                                    <option value="8">Headphone</option>
-                                </select>
-                                <span class="devider"></span>
-                                <input type="search" name="search" placeholder="What do you need?">
-                            </div>
-                            <button type="submit">
-                                <span><i class="fa-light fa-magnifying-glass"></i></span>
-                            </button>
-                        </form>
-                    </div> -->
-                </div>
                 <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-3 col-sm-4 col-7">
                     <ul class="bottom-header-right d-flex align-items-center justify-content-end">
                         <li class="header-cart-options">
-                            <!-- <a role="button" class="search-open d-sm-none">
-                                <i class="fa-light fa-magnifying-glass"></i>
-                            </a>
 
-                            <a role="button" class="wish-list-btn">
-                                <i class="fa-light fa-heart position-relative">
-                                    <span class="quantity">02</span>
-                                </i>
-                                <span class="d-lg-inline d-none">Wishlist</span>
-                            </a>
+                            <?php
+                                if(!isset($_SESSION['user_id']) || !isset($_SESSION['username']) || !isset($_SESSION['name']) || !isset($_SESSION['email'])){
+                            ?>
+                                <a href="auth/login.php">
+                                    <i class="fa-light fa-user-lock"></i>
+                                    <span class="d-lg-inline d-none">Login</span>
+                                </a>
+                                <a href="auth/register.php">
+                                    <i class="fa-light fa-user-alt"></i>
+                                    <span class="d-lg-inline d-none">Register</span>
+                                </a>
+                            <?php
+                                }else{
+                            ?>
+                                <div class="header-right-btns d-flex justify-content-end align-items-center">
+                                    <div class="header-collapse-group">
+                                        <div class="header-right-btns d-flex justify-content-end align-items-center p-0">
+                                            <div class="header-right-btns d-flex justify-content-end align-items-center p-0">                            
+                                                <button class="header-btn fullscreen-btn" id="btnFullscreen"><i class="fa-light fa-expand"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="header-btn header-collapse-group-btn d-lg-none"><i class="fa-light fa-ellipsis-vertical"></i></button>
+                                    <div class="header-btn-box">
+                                        <button class="profile-btn" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <p class="mb-0"><?php echo $_SESSION['name']?></p>
+                                            <span class="d-block"><?php echo $_SESSION['user_type_name']?></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                            <li><a class="dropdown-item" href="dashboard/"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Dashbpard</a></li>
+                                            <li><a class="dropdown-item" href="../../models/logout.php"><span class="dropdown-icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></span> Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php
+                                }
+                            ?>
 
-                            <a href="compare.html" class="compare-list-btn">
-                                <i class="fa-light fa-shuffle"></i>
-                                <span class="d-lg-inline d-none">compare</span>
-                            </a>
-
-                            <a role="button" class="cart-list-btn">
-                                <i class="fa-light fa-cart-shopping position-relative">
-                                    <span class="quantity">03</span>
-                                </i>
-                                <span class="d-lg-inline d-none">cart</span>
-                            </a> -->
-
-                            <a href="auth/login.php">
-                                <i class="fa-light fa-user-lock"></i>
-                                <span class="d-lg-inline d-none">Login</span>
-                            </a>
-                            <a href="auth/register.php">
-                                <i class="fa-light fa-user-alt"></i>
-                                <span class="d-lg-inline d-none">Register</span>
-                            </a>
+                            
                         </li>
                     </ul>
                 </div>
