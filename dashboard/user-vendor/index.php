@@ -38,6 +38,10 @@
                             <input type="text" name="user_vendor_address" class="form-control" required>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">GPS Address</label>
+                            <input type="text" name="user_vendor_gps_address" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" name="user_vendor_email" class="form-control" required>
                         </div>

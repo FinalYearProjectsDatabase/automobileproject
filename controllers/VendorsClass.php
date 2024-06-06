@@ -8,6 +8,7 @@ class VendorsClass{
     protected $vendor_username;
     protected $vendor_dob;
     protected $vendor_address;
+    protected $vendor_gps_address;
     protected $vendor_email;
     protected $vendor_contact;
     protected $vendor_business_name;
@@ -19,12 +20,13 @@ class VendorsClass{
     protected $response = [];
 
     // method to save new vendor
-    public function new_vendor_client($vendor_id, $vendor_name, $vendor_username, $vendor_dob, $vendor_address, $vendor_email, $vendor_contact, $vendor_business_name, $vendor_business_id, $vendor_business_file, $vendor_type){
+    public function new_vendor_client($vendor_id, $vendor_name, $vendor_username, $vendor_dob, $vendor_address, $vendor_gps_address, $vendor_email, $vendor_contact, $vendor_business_name, $vendor_business_id, $vendor_business_file, $vendor_type){
         $this->vendor_id = $vendor_id;
         $this->vendor_name = $vendor_name;
         $this->vendor_username = $vendor_username;
         $this->vendor_dob = $vendor_dob;
         $this->vendor_address = $vendor_address;
+        $this->vendor_gps_address = $vendor_gps_address;
         $this->vendor_email = $vendor_email;
         $this->vendor_contact = $vendor_contact;
         $this->vendor_business_name = $vendor_business_name;
@@ -50,13 +52,14 @@ class VendorsClass{
             $connection->beginTransaction();
             try{
                 // insert new vendor in the vendors table
-                $sqlOne = "INSERT INTO vendors_table(vendor_id, vendor_name, vendor_username, vendor_dob, vendor_address, vendor_email, vendor_contact, vendor_business_name, vendor_business_id, vendor_business_file, vendor_type) VALUES(:vendor_id, :vendor_name, :vendor_username, :vendor_dob, :vendor_address, :vendor_email, :vendor_contact, :vendor_business_name, :vendor_business_id, :vendor_business_file, :vendor_type)";
+                $sqlOne = "INSERT INTO vendors_table(vendor_id, vendor_name, vendor_username, vendor_dob, vendor_address, vendor_gps_address, vendor_email, vendor_contact, vendor_business_name, vendor_business_id, vendor_business_file, vendor_type) VALUES(:vendor_id, :vendor_name, :vendor_username, :vendor_dob, :vendor_address, :vendor_gps_address, :vendor_email, :vendor_contact, :vendor_business_name, :vendor_business_id, :vendor_business_file, :vendor_type)";
                 $stmtOne = $connection->prepare($sqlOne);
                 $stmtOne->bindValue(':vendor_id',$vendor_id ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_name',$vendor_name ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_username',$vendor_username ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_dob',$vendor_dob ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_address',$vendor_address ,PDO::PARAM_STR);
+                $stmtOne->bindValue(':vendor_gps_address',$vendor_gps_address ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_email',$vendor_email ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_contact',$vendor_contact ,PDO::PARAM_STR);
                 $stmtOne->bindValue(':vendor_business_name',$vendor_business_name ,PDO::PARAM_STR);
@@ -119,12 +122,13 @@ class VendorsClass{
         return json_encode($this->response);
     }
     //update vendor data 
-    public function update_vendor_client($vendor_id, $vendor_name, $vendor_username, $vendor_dob, $vendor_address, $vendor_email, $vendor_contact, $vendor_business_name, $vendor_business_id){
+    public function update_vendor_client($vendor_id, $vendor_name, $vendor_username, $vendor_dob, $vendor_address, $vendor_gps_address, $vendor_email, $vendor_contact, $vendor_business_name, $vendor_business_id){
         $this->vendor_id = $vendor_id;
         $this->vendor_name = $vendor_name;
         $this->vendor_username = $vendor_username;
         $this->vendor_dob = $vendor_dob;
         $this->vendor_address = $vendor_address;
+        $this->vendor_gps_address = $vendor_gps_address;
         $this->vendor_email = $vendor_email;
         $this->vendor_contact = $vendor_contact;
         $this->vendor_business_name = $vendor_business_name;
@@ -135,13 +139,14 @@ class VendorsClass{
         $connection->beginTransaction();
         try{
             // update new vendor in the vendors table
-            $sqlOne = "UPDATE vendors_table SET vendor_name = :vendor_name, vendor_username = :vendor_username, vendor_dob = :vendor_dob, vendor_address = :vendor_address, vendor_email = :vendor_email, vendor_contact = :vendor_contact, vendor_business_name = :vendor_business_name, vendor_business_id = :vendor_business_id WHERE vendor_id = :vendor_id";
+            $sqlOne = "UPDATE vendors_table SET vendor_name = :vendor_name, vendor_username = :vendor_username, vendor_dob = :vendor_dob, vendor_address = :vendor_address, vendor_gps_address = :vendor_gps_address, vendor_email = :vendor_email, vendor_contact = :vendor_contact, vendor_business_name = :vendor_business_name, vendor_business_id = :vendor_business_id WHERE vendor_id = :vendor_id";
             $stmtOne = $connection->prepare($sqlOne);
             $stmtOne->bindValue(':vendor_id',$vendor_id ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_name',$vendor_name ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_username',$vendor_username ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_dob',$vendor_dob ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_address',$vendor_address ,PDO::PARAM_STR);
+            $stmtOne->bindValue(':vendor_gps_address',$vendor_gps_address ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_email',$vendor_email ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_contact',$vendor_contact ,PDO::PARAM_STR);
             $stmtOne->bindValue(':vendor_business_name',$vendor_business_name ,PDO::PARAM_STR);

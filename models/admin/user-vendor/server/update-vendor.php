@@ -6,6 +6,7 @@
         if(isset($_POST['user_vendor_name'])
             && isset($_POST['user_vendor_dob'])
             && isset($_POST['user_vendor_address'])
+            && isset($_POST['user_vendor_gps_address'])     
             && isset($_POST['user_vendor_email'])
             && isset($_POST['user_vendor_contact'])
             && isset($_POST['user_vendor_business_name'])
@@ -24,6 +25,7 @@
             $name = filter_input(INPUT_POST, "user_vendor_name", FILTER_SANITIZE_SPECIAL_CHARS);
             $dob = filter_input(INPUT_POST, "user_vendor_dob", FILTER_SANITIZE_SPECIAL_CHARS);
             $address = filter_input(INPUT_POST, "user_vendor_address", FILTER_SANITIZE_SPECIAL_CHARS);
+            $gps_address = filter_input(INPUT_POST, "user_vendor_gps_address", FILTER_SANITIZE_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, "user_vendor_email", FILTER_SANITIZE_SPECIAL_CHARS);
             $user_name = filter_input(INPUT_POST, "user_vendor_username", FILTER_SANITIZE_SPECIAL_CHARS);
             $contact = filter_input(INPUT_POST, "user_vendor_contact", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -40,7 +42,7 @@
             $vendorObj = new vendorsClass;
 
             // get the new vendor method and we pass the various parameters to update vendors
-            $updateVendor = $vendorObj->update_vendor_client($user_id, $name, $user_name, $dob, $address, $email, $contact, $business_name, $business_id);
+            $updateVendor = $vendorObj->update_vendor_client($user_id, $name, $user_name, $dob, $address, $gps_address, $email, $contact, $business_name, $business_id);
 
             // get the outcome of the method which is to return a json response and convert it in array
             $outcome = json_decode($updateVendor);

@@ -60,6 +60,7 @@ $(document).ready(()=>{
                 form_view.find("input[name=user_vendor_id]").val(vendor_id)
                 form_view.find("input[name=user_vendor_dob]").val(response.data.vendor_dob)
                 form_view.find("input[name=user_vendor_address]").val(response.data.vendor_address)
+                form_view.find("input[name=user_vendor_gps_address]").val(response.data.vendor_gps_address)
                 form_view.find("input[name=user_vendor_email]").val(response.data.vendor_email)
                 form_view.find("input[name=user_vendor_contact]").val(response.data.vendor_contact)
                 form_view.find("input[name=user_vendor_business_name]").val(response.data.vendor_business_name)
