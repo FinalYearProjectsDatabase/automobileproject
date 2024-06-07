@@ -20,17 +20,10 @@ class PostsClass{
         $stmt->execute();
 
         if($stmt->rowCount() == 0){
-            $this->response = [
-                'status' => 201,
-                'msg' => 'No Post found'
-            ];
+            $this->response = [];
         }else{
             while($row = $stmt->fetch(PDO::FETCH_OBJ)){
-                $this->response = [
-                    'status' => 200,
-                    'msg' => 'Post found',
-                    'data' => $row
-                ];
+                $this->response[] = $row;
             }
             
         }
@@ -99,17 +92,10 @@ class PostsClass{
         $stmt->execute();
 
         if($stmt->rowCount() == 0){
-            $this->response = [
-                'status' => 201,
-                'msg' => 'No Post found'
-            ];
+            $this->response = [];
         }else{
             $row = $stmt->fetch(PDO::FETCH_OBJ);
-            $this->response = [
-                'status' => 200,
-                'msg' => 'Post found',
-                'data' => $row
-            ];
+            $this->response = $row;
         }
         $connection = $this->close_connection();
         return json_encode($this->response);
