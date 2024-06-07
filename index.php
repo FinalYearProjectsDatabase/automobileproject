@@ -1,7 +1,10 @@
 <?php
     session_start();
+    require 'config/db-parameters.php';
+    require 'controllers/DataBaseClass.php';
     require_once('config/index-settings.php');
     require(__DIR__.'/components/index-head.php');
+    
 ?>
 
 <body class="rev-10-body">
@@ -50,7 +53,7 @@
 
     <!--------------------------------- CATEGORIES SECTION STARTS HERE --------------------------------->
     <?php 
-        require(__DIR__.'/components/index-category-section.php')
+        // require(__DIR__.'/components/index-category-section.php')
     ?>
     <!--------------------------------- CATEGORIES SECTION ENDS HERE --------------------------------->
 
