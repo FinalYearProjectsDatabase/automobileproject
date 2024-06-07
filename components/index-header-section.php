@@ -42,7 +42,7 @@
                                             <span class="d-block"><?php echo $_SESSION['user_type_name']?></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                            <li><a class="dropdown-item" href="dashboard/"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Dashbpard</a></li>
+                                            <li><a class="dropdown-item" href="dashboard/"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Dashboard</a></li>
                                             <li><a class="dropdown-item" href="../../models/logout.php"><span class="dropdown-icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></span> Logout</a></li>
                                         </ul>
                                     </div>
