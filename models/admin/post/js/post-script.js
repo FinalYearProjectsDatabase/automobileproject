@@ -54,18 +54,14 @@ $(document).ready(()=>{
         data:{post_id: post_id},
         success: (Response)=>{
             let response = JSON.parse(Response)
-            if(response.status == 200){
-                form_view.find("input[name=post_title]").val(response.data.post_title)
-                form_view.find("textarea[name=post_description]").val(response.data.post_description)
-                form_view.find("input[name=post_id]").val(post_id)
-                form_view.find("input[name=post_video_link]").val(response.data.post_video_link)
-                form_view.find("input[name=old_post_featured_image]").val(response.data.post_featured_image)
+            form_view.find("input[name=post_title]").val(response.post_title)
+            form_view.find("textarea[name=post_description]").val(response.post_description)
+            form_view.find("input[name=post_id]").val(post_id)
+            form_view.find("input[name=post_video_link]").val(response.post_video_link)
+            form_view.find("input[name=old_post_featured_image]").val(response.post_featured_image)
 
-                form_delete.find("input[name=post_id]").val(post_id)
-                form_delete.find("#notice").html('Are you sure of deleting '+response.data.post_title+' data?')
-            }else{
-                
-            }
+            form_delete.find("input[name=post_id]").val(post_id)
+            form_delete.find("#notice").html('Are you sure of deleting '+response.post_title+' data?')
             
         }
     })
