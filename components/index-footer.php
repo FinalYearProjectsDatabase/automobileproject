@@ -8,6 +8,3 @@
     <script src="assets/vendor/js/jquery-modal-video.min.js"></script>
     <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
-</body>
-
-</html>
