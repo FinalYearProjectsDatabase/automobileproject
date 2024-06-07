@@ -5,8 +5,6 @@
             </div>
             <div class="row gy-4 justify-content-center">
                 <?php
-                    require 'config/db-parameters.php';
-                    require 'controllers/DataBaseClass.php';
                     require 'controllers/PostsClass.php';
                     $PostObj = new PostsClass;
 
