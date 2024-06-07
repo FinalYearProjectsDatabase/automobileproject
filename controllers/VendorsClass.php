@@ -215,4 +215,21 @@ class VendorsClass{
         $connection = $this->close_connection();
         return json_encode($this->response);
     }
+
+    public function vendors_in_select_input(){
+        $connection = $this->open_connection();
+        $chkSql = 'SELECT * FROM `vendors_table` ORDER BY created_at DESC';
+        $stmtSql = $connection->prepare($chkSql);
+        $stmtSql->execute();
+
+        if($stmtSql->rowCount() == 0){
+            $this->response = [];
+        }else{
+            while($row = $stmtSql->fetch(PDO::FETCH_OBJ)){
+                $this->response[] =  $row;
+            }
+            
+        }
+        return json_encode($this->response);
+    }
 }
