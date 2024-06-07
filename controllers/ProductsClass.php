@@ -14,27 +14,24 @@ class ProductsClass{
     protected $response = [];
 
     public function products(){
-        $sql = "SELECT * FROM products ORDER BY created_at DESC";
+        $sql = "SELECT * FROM products_table WHERE product_status = :status ORDER BY created_at DESC";
         $connection = $this->open_connection();
         $stmt = $connection->prepare($sql);
+        $stmt->bindValue(":status", 1, PDO::PARAM_INT);
         $stmt->execute();
 
         if($stmt->rowCount() > 0){
             while($row = $stmt->fetch(PDO::FETCH_OBJ)){
-                $this->response = [
-                    'data' => $row
-                ];
+                $this->response[] = $row;
             }
         }else{
-            $this->response = [
-                'data' => null
-            ];
+            $this->response = [];
         }
         return json_encode($this->response);
     }
 
     public function vendor_products($vendor_id){
-        $sql = "SELECT * FROM products WHERE product_vendor = :vendor_id ORDER BY created_at DESC";
+        $sql = "SELECT * FROM products_table WHERE product_vendor = :vendor_id ORDER BY created_at DESC";
         $connection = $this->open_connection();
         $stmt = $connection->prepare($sql);
         $stmt->bindValue(":vendor_id", $vendor_id, PDO::PARAM_STR);
