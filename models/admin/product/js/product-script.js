@@ -50,7 +50,7 @@ $(document).ready(()=>{
         data:{product_id: product_id},
         success: (Response)=>{
             let response = JSON.parse(Response)
-            console.log(response.product_vendor)
+            // console.log(response.product_vendor)
             form_view.find("input[name=product_name]").val(response.product_name)
             form_view.find("textarea[name=product_description]").val(response.product_description)
             form_view.find("#show-product-img").html("<img src='../../../../product-images/"+response.product_image+"' width='150px'>")
