@@ -1,7 +1,7 @@
 <section class="flash-sale rev-14-flash-sale">
         <div class="container">
             <div class="rev-14-section-heading">
-                <h2 class="rev-14-section-title">Products & Services</h2>
+                <h2 class="rev-14-section-title">Products on Sale</h2>
                 <!-- <a href="#" class="rev-14-def-btn">Show More</a> -->
             </div>
 
