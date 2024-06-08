@@ -14,20 +14,20 @@
 <!-- main content start -->
 <div class="main-content">
     <div class="dashboard-breadcrumb mb-30">
-        <h2>Products</h2>
+        <h2>Services</h2>
     </div>
     <div class="row">
         <div class="alert" id="alert-notice"></div>
         <div class="col-xxl-4">
             <div class="panel">
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" id="delete-product">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" id="delete-service">
                     <div class="panel-header">
-                        <h4>Delete Product</h4>
+                        <h4>Delete Service</h4>
                     </div>
                     <div class="panel-body">
                         <div class="mb-3">
                             <h4 id="notice" class="text-danger"></h4>
-                            <input type="hidden" name="product_id">
+                            <input type="hidden" name="service_id">
                         </div>
                     </div>
                     <div class="panel-footer">
@@ -42,13 +42,12 @@
                     <h4>TableView</h4>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-dashed recent-order-table" id="productsTable">
+                    <table class="table table-dashed recent-order-table" id="servicesTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
                                 <th>Vendor</th>
                                 <th>Type</th>
-                                <th>Posting Date</th>
+                                <th>Location</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -71,5 +70,5 @@
 
 <?php include ('../components/footer.php') ?>
 
-<script src="../../models/admin/product/js/product-script.js"></script>
-<script src="../../models/admin/product/js/datatables-script.js"></script>
+<script src="../../models/admin/service/js/service-script.js"></script>
+<script src="../../models/admin/service/js/datatables-script.js"></script>
