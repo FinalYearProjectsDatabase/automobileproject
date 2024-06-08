@@ -53,7 +53,7 @@
 
     <!--------------------------------- CATEGORIES SECTION STARTS HERE --------------------------------->
     <?php 
-        // require(__DIR__.'/components/index-category-section.php')
+        require(__DIR__.'/components/index-category-section.php')
     ?>
     <!--------------------------------- CATEGORIES SECTION ENDS HERE --------------------------------->
 
