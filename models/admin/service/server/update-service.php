@@ -3,15 +3,14 @@
     session_start();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if(isset($_POST['product_name'])
-            && isset($_POST['product_description'])
-            && isset($_POST['product_vendor'])
-            && isset($_POST['product_type'])
-            && isset($_POST['product_price'])
-            && isset($_POST['product_id'])
-            && isset($_POST['fetch_product_image'])
-            && isset($_FILES['product_image'])
-            && isset($_POST["product_status"])
+        if(isset($_POST['service_vendor'])
+            && isset($_POST['service_type'])
+            && isset($_POST['service_description'])
+            && isset($_POST['service_location'])
+            && isset($_POST['service_status'])
+            && isset($_POST['service_id'])
+            && isset($_POST['fetch_service_image'])
+            && isset($_FILES['service_image'])
         ){
 
             // this file helps us to get the uuid method and username method
@@ -20,47 +19,31 @@
             require('../../../../config/index-settings.php');
             // database parameters
             require '../../../../config/db-parameters.php';
-            $product_id =filter_input(INPUT_POST, "product_id", FILTER_SANITIZE_SPECIAL_CHARS);
-            $fetch_product_image = filter_input(INPUT_POST, "fetch_product_image", FILTER_SANITIZE_SPECIAL_CHARS);
-            $product_name = filter_input(INPUT_POST, "product_name", FILTER_SANITIZE_SPECIAL_CHARS);
-            $product_description = filter_input(INPUT_POST, "product_description", FILTER_SANITIZE_SPECIAL_CHARS);
-            $product_vendor = filter_input(INPUT_POST, "product_vendor", FILTER_SANITIZE_SPECIAL_CHARS);
-            $product_type = filter_input(INPUT_POST, "product_type", FILTER_SANITIZE_SPECIAL_CHARS);
-            $product_price = filter_input(INPUT_POST, "product_price", FILTER_SANITIZE_SPECIAL_CHARS); 
-            $product_status = filter_input(INPUT_POST, "product_status", FILTER_SANITIZE_SPECIAL_CHARS); 
+            $service_id = filter_input(INPUT_POST, "service_id", FILTER_SANITIZE_SPECIAL_CHARS);
+            $service_description = filter_input(INPUT_POST, "service_description", FILTER_SANITIZE_SPECIAL_CHARS);
+            $service_vendor = filter_input(INPUT_POST, "service_vendor", FILTER_SANITIZE_SPECIAL_CHARS);
+            $service_type = filter_input(INPUT_POST, "service_type", FILTER_SANITIZE_SPECIAL_CHARS);
+            $service_location = filter_input(INPUT_POST, "service_location", FILTER_SANITIZE_SPECIAL_CHARS);
+            $service_status = filter_input(INPUT_POST, "service_status", FILTER_SANITIZE_SPECIAL_CHARS);
 
-            // database class
-            require('../../../../controllers/DataBaseClass.php');
-            // products class
-            require('../../../../controllers/ProductsClass.php');
-            // initialize the product class with an object
-            $productObj = new ProductsClass;  
-
-            // check if featured image has been uploaded
-            if($_FILES["product_image"]["name"] > 0){
-                $fileName = $_FILES["product_image"]["name"];
-                $fileTemp = $_FILES["product_image"]["tmp_name"];
-                $fileDestination = "../../../../product-images/";
-                $fileSize = $_FILES["product_image"]["size"];
+            if(empty($_FILES["service_image"]["name"])){
+                $service_img = filter_input(INPUT_POST, "fetch_service_image", FILTER_SANITIZE_SPECIAL_CHARS);
+            }else{
+                // service profile handling
+                $fileName = $_FILES["service_image"]["name"];
+                $fileTemp = $_FILES["service_image"]["tmp_name"];
+                $fileDestination = "../../../../service-images/";
+                $fileSize = $_FILES["service_image"]["size"];
                 $valid_Extension = ["jpeg", "jpg", "png", "pdf"];
 
                 $oldExtension = explode(".", $fileName);
-                $newExtension = strtolower(end($oldExtension));
+                $updateExtension = strtolower(end($oldExtension));
 
-                if(in_array($newExtension, $valid_Extension)){
+                if(in_array($updateExtension, $valid_Extension)){
                     if($fileSize <= 1000000){
-                        $product_image = $product_id.time().".".$newExtension;
-                        // move uploaded profile
-                        move_uploaded_file($fileTemp, $fileDestination.$product_image);
-
-                        // get the product update method and we pass the various parameters to update Posts
-                        $updateProduct = $productObj->update_product($product_id, $product_name, $product_description, $product_image, $product_vendor, $product_type, $product_status, $product_price);
-
-                        // get the outcome of the method which is to return a json response and convert it in array
-                        $outcome = json_decode($updateProduct);
-
-                        $response = $outcome;
-
+                        $service_img = $service_id.time().".".$updateExtension;
+                        // move uploaded service profile
+                        move_uploaded_file($fileTemp, $fileDestination.$service_img);
                     }else{
                         $response = [
                             'status' => 201,
@@ -73,16 +56,23 @@
                         'msg' => 'Invalid format. Preferred format: jpeg, jpg, png, pdf'
                     ];
                 }
-            }else{
-                $product_image = $fetch_product_image;
-                // get the new post method and we pass the various parameters to update Posts
-                $updateProduct = $productObj->update_product($product_id, $product_name, $product_description, $product_image, $product_vendor, $product_type, $product_status, $product_price);
-
-                // get the outcome of the method which is to return a json response and convert it in array
-                $outcome = json_decode($updateProduct);
-
-                $response = $outcome;
             }
+
+            // database class
+            require('../../../../controllers/DataBaseClass.php');
+            // services class
+            require('../../../../controllers/ServicesClass.php');
+
+            // initialize the post class with an object
+            $serviceObj = new ServicesClass;
+
+            // get the update service method and we pass the various parameters to create a update service
+            $updateService = $serviceObj->update_service($service_id, $service_description, $service_img, $service_vendor, $service_type, $service_location, $service_status);
+
+            // get the outcome of the method which is to return a json response and convert it in array
+            $outcome = json_decode($updateService);
+
+            $response = $outcome;
 
             echo json_encode($response);
         }
