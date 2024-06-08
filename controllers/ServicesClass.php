@@ -38,7 +38,7 @@ class ServicesClass{
         $stmt->execute();
 
         $this->response = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         return json_encode($this->response);
     }
 
@@ -112,7 +112,7 @@ class ServicesClass{
         $this->service_id = $service_id;
         $connection = $this->open_connection();
         
-        $sql = "SELECT * FROM services_table WHERE service_id = :service_id LIMIT 1";
+        $sql = "SELECT * FROM vendors_services WHERE service_id = :service_id LIMIT 1";
         $stmt = $connection->prepare($sql);
         $stmt->bindValue(":service_id", $service_id, PDO::PARAM_STR);
         $stmt->execute();
