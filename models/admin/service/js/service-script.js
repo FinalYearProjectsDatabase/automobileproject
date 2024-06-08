@@ -5,6 +5,18 @@ $(document).ready(()=>{
     // alert
     $("#alert-notice").hide()
 
+    const vendorsSelect = () =>{
+        $.ajax({
+            url:'../../../../models/admin/service/server/vendors-in-select.php',
+            cache: false,
+            success:(Response)=>{
+                // console.log(Response)
+                $("form").find("select[name=service_vendor]").html(Response)
+            }
+        })
+    }
+    vendorsSelect();
+
 
     // new service
     $("#new-service").on("submit", (e)=>{
@@ -51,7 +63,6 @@ $(document).ready(()=>{
         success: (Response)=>{
             let response = JSON.parse(Response)
             // console.log(response.service_vendor)
-            form_view.find("input[name=service_name]").val(response.service_name)
             form_view.find("textarea[name=service_description]").val(response.service_description)
             form_view.find("#show-service-img").html("<img src='../../../../service-images/"+response.service_image+"' width='150px'>")
             form_view.find("input[name=service_id]").val(service_id)
@@ -59,10 +70,10 @@ $(document).ready(()=>{
             form_view.find("select[name=service_vendor]").val(response.service_vendor)
             form_view.find("select[name=service_type]").val(response.service_type)
             form_view.find("select[name=service_status]").val(response.service_status)
-            form_view.find("input[name=service_price]").val(response.service_price)
+            form_view.find("input[name=service_location]").val(response.service_location)
 
             form_delete.find("input[name=service_id]").val(service_id)
-            form_delete.find("#notice").html('Are you sure of deleting '+response.service_name+' data?')
+            form_delete.find("#notice").html('Are you sure of deleting '+response.service_type+' from '+response.vendor_name+' data?')
             
         }
     })
@@ -122,17 +133,5 @@ $(document).ready(()=>{
             }
         })
     })
-
-    const vendorsSelect = () =>{
-        $.ajax({
-            url:'../../../../models/admin/service/server/vendors-in-select.php',
-            cache: false,
-            success:(Response)=>{
-                // console.log(Response)
-                $("form").find("select[name=service_vendor]").html(Response)
-            }
-        })
-    }
-    vendorsSelect();
    
 })
