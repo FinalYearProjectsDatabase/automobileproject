@@ -5,6 +5,18 @@ $(document).ready(()=>{
     // alert
     $("#alert-notice").hide()
 
+    const vendorsSelect = () =>{
+        $.ajax({
+            url:'../../../../models/admin/product/server/vendors-in-select.php',
+            cache: false,
+            success:(Response)=>{
+                // console.log(Response)
+                $("form").find("select[name=product_vendor]").html(Response)
+            }
+        })
+    }
+    vendorsSelect();
+
 
     // new product
     $("#new-product").on("submit", (e)=>{
@@ -122,17 +134,5 @@ $(document).ready(()=>{
             }
         })
     })
-
-    const vendorsSelect = () =>{
-        $.ajax({
-            url:'../../../../models/admin/product/server/vendors-in-select.php',
-            cache: false,
-            success:(Response)=>{
-                // console.log(Response)
-                $("form").find("select[name=product_vendor]").html(Response)
-            }
-        })
-    }
-    vendorsSelect();
    
 })
