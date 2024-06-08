@@ -2,22 +2,22 @@
 
     session_start();
 
-    if(isset($_POST['product_id'])){
+    if(isset($_POST['service_id'])){
         // database parameters
         require '../../../../config/db-parameters.php';
-        $product_id = filter_input(INPUT_POST, "product_id", FILTER_SANITIZE_SPECIAL_CHARS);
+        $service_id = filter_input(INPUT_POST, "service_id", FILTER_SANITIZE_SPECIAL_CHARS);
         // database class
         require('../../../../controllers/DataBaseClass.php');
-        // products class
-        require('../../../../controllers/ProductsClass.php');  
-        // initialize the product class with an object
-        $productObj = new ProductsClass;   
+        // services class
+        require('../../../../controllers/ServicesClass.php');  
+        // initialize the service class with an object
+        $serviceObj = new ServicesClass;   
 
         // delete post method and we pass the various parameters to delete post
-        $deleteProduct = $productObj->delete_product($product_id);
+        $deleteService = $serviceObj->delete_service($service_id);
 
         // get the outcome of the method which is to return a json response and convert it in array
-        $outcome = json_decode($deleteProduct);
+        $outcome = json_decode($deleteService);
 
         echo json_encode($outcome);
     }
