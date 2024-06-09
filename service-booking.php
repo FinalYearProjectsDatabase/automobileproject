@@ -75,29 +75,50 @@
                             <p class="price"><?php echo $response->vendor_name?></p>
                             
                             <p class="dscr"><?php echo $response->service_description?></p>
-                            <form>
+                            
+                            <div class="alert" id="alert-notice"></div>
+                            
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post" enctype="multipart/form-data" id="service_booking">
                                 <div class="row g-xl-4 g-3">
-                                    <div class="col-lg-4 col-md-12 col-sm-4">
-                                        <div class="quantity-wrap">
-                                            <label>QTY</label>
-                                            <div class="product-count">
-                                                <div class="quantity rapper-quantity">
-                                                    <input type="number" min="1" max="100" step="1" value="1" readonly name="order_quantity">
-                                                    <div class="quantity-nav">
-                                                        <div class="quantity-button quantity-down">
-                                                            <i class="fa-solid fa-minus"></i>
-                                                        </div>
-                                                        <div class="quantity-button quantity-up">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Name</label>
+                                            <input type="text" name="user_booking_name" class="form-control" id="formGroupExampleInput">
+                                            <input type="hidden" name="vendor_id" value="<?php echo $response->vendor_id?>">
+                                            <input type="hidden" name="service_id" value="<?php echo $response->service_id?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Contact</label>
+                                            <input type="text" name="user_booking_contact" class="form-control" id="formGroupExampleInput">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Email</label>
+                                            <input type="text" name="user_booking_email" class="form-control" id="formGroupExampleInput">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Location</label>
+                                            <input type="text" name="user_booking_location" class="form-control" id="formGroupExampleInput">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Vehicle Type, Color, License Plate</label>
+                                            <textarea name="user_booking_vehicle" class="form-control"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Description</label>
+                                            <textarea name="user_booking_description" class="form-control"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Upload Pictures</label>
+                                            <input type="file" name="user_booking_files" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formGroupExampleInput">Booking Date</label>
+                                            <input type="date" name="user_booking_date" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="btn-box mt-4">
-                                    <button id="addToCart"><span><i class="fa-light fa-cart-shopping"></i></span>Order</button>
+                                    <button type="submit" name="book_service" id="addToCart"><span><i class="fa-light fa-bookmark"></i></span>Book Service Now</button>
                                 </div>
                             </form>
                         </div>
@@ -111,7 +132,6 @@
     <?php
 
         }
-
     ?>
 
     <!--------------------------------- FOOTER SECTION STARTS HERE --------------------------------->
@@ -119,4 +139,6 @@
     <!--------------------------------- FOOTER SECTION ENDS HERE --------------------------------->
 
 <?php require(__DIR__.'/components/index-footer.php')?>
+
+<script src="models/booking/js/booking-script.js"></script>
 
