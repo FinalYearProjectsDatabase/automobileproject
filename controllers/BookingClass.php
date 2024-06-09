@@ -14,6 +14,7 @@
         protected $booking_user_description;
         protected $booking_user_files;
         protected $booking_date;
+        protected $booking_status;
         protected $vendor_id;
         protected $service_id;
         protected $response = [];
@@ -73,7 +74,7 @@
             
             $connection = $this->open_connection();
             
-            $sql = "SELECT * FROM bookings_table WHERE booking_id = :booking_id";
+            $sql = "SELECT * FROM bookings_view WHERE booking_id = :booking_id";
             $stmt = $connection->prepare($sql);
             $stmt->bindValue(":booking_id", $booking_id, PDO::PARAM_STR);
             $stmt->execute();
@@ -119,6 +120,33 @@
             $row = $stmt->fetch(PDO::FETCH_OBJ);
             
             $this->response = $row;
+            
+            return json_encode($this->response);
+        }
+        
+        public function update_booking($booking_id, $booking_status){
+            $this->booking_id = $booking_id;
+            $this->booking_status = $booking_status;
+            
+            $connection = $this->open_connection();
+            
+            try{
+                $sql = "UPDATE bookings_table SET booking_status = :status WHERE booking_id = :id";
+                $stmt = $connection->prepare($sql);
+                $stmt->bindValue(':status', $booking_status, PDO::PARAM_STR);
+                $stmt->bindValue(':id', $booking_id, PDO::PARAM_STR);
+                $stmt->execute();
+                
+                $this->response = [
+                    'status' => 200,
+                    'msg' => 'Booking updated successfully'
+                ];
+            }catch(\Exception $th){
+                $this->response = [
+                    'status' => 201,
+                    'msg' => 'Something went wrong. Details : ' . $th->getMessage()
+                ];
+            }
             
             return json_encode($this->response);
         }
