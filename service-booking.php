@@ -86,6 +86,7 @@
                                             <input type="text" name="user_booking_name" class="form-control" id="formGroupExampleInput">
                                             <input type="hidden" name="vendor_id" value="<?php echo $response->vendor_id?>">
                                             <input type="hidden" name="service_id" value="<?php echo $response->service_id?>">
+                                            <input type="hidden" name="user_booking_id" value="<?php echo $_SESSION['user_id']?>">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="formGroupExampleInput">Contact</label>

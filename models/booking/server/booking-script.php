@@ -14,6 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
        && isset($_POST["user_booking_description"])
        && isset($_FILES["user_booking_files"])
        && isset($_POST["user_booking_date"])
+       && isset($_POST["user_booking_id"])
        ){
            // this file helps us to get the uuid method and username method
            require('../../../config/functions.php');
@@ -32,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
            $user_booking_vehicle = filter_input(INPUT_POST, "user_booking_vehicle", FILTER_SANITIZE_SPECIAL_CHARS);
            $user_booking_description = filter_input(INPUT_POST, "user_booking_description", FILTER_SANITIZE_SPECIAL_CHARS);
            $user_booking_date = filter_input(INPUT_POST, "user_booking_date", FILTER_SANITIZE_SPECIAL_CHARS);
+           $user_booking_id = filter_input(INPUT_POST, "user_booking_id", FILTER_SANITIZE_SPECIAL_CHARS);
            
            // service request proof handling
            $fileName = $_FILES["user_booking_files"]["name"];
@@ -69,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
            
            $bookingObj = new BookingClass;
            
-           $newBooking = $bookingObj->new_booking($booking_id, $user_booking_name, $user_booking_contact, $user_booking_email, $user_booking_location, $user_booking_vehicle, $user_booking_description, $booking_img, $vendor_id, $service_id, $user_booking_date);
+           $newBooking = $bookingObj->new_booking($booking_id, $user_booking_id, $user_booking_name, $user_booking_contact, $user_booking_email, $user_booking_location, $user_booking_vehicle, $user_booking_description, $booking_img, $vendor_id, $service_id, $user_booking_date);
            
            $outcome = json_decode($newBooking);
            

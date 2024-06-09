@@ -5,6 +5,7 @@
         use DataBaseClass;
         
         protected $booking_id;
+        protected $booking_user_id;
         protected $booking_user_name;
         protected $booking_user_contact;
         protected $booking_user_email;
@@ -20,8 +21,9 @@
         protected $output = '';
         
         
-        public function new_booking($booking_id, $booking_user_name, $booking_user_contact, $booking_user_email, $booking_user_location, $booking_user_vehicle_details, $booking_user_description, $booking_user_files, $vendor_id, $service_id, $booking_date){
+        public function new_booking($booking_id, $booking_user_id, $booking_user_name, $booking_user_contact, $booking_user_email, $booking_user_location, $booking_user_vehicle_details, $booking_user_description, $booking_user_files, $vendor_id, $service_id, $booking_date){
             $this->booking_id = $booking_id;
+            $this->booking_user_id = $booking_user_id;
             $this->booking_user_name = $booking_user_name;
             $this->booking_user_contact = $booking_user_contact;
             $this->booking_user_email = $booking_user_email;
@@ -36,9 +38,10 @@
             $connection = $this->open_connection();
             try{
                 
-                $sql = "INSERT INTO bookings_table(booking_id, booking_user_name, booking_user_contact, booking_user_email, booking_user_location, booking_user_vehicle_details, booking_user_description, booking_user_files, vendor_id, service_id, booking_date) VALUES(:booking_id, :booking_user_name, :booking_user_contact, :booking_user_email,:booking_user_location, :booking_user_vehicle_details, :booking_user_description, :booking_user_files, :vendor_id, :service_id, :booking_date)";
+                $sql = "INSERT INTO bookings_table(booking_id, booking_user_id, booking_user_name, booking_user_contact, booking_user_email, booking_user_location, booking_user_vehicle_details, booking_user_description, booking_user_files, vendor_id, service_id, booking_date) VALUES(:booking_id, :booking_user_id, :booking_user_name, :booking_user_contact, :booking_user_email,:booking_user_location, :booking_user_vehicle_details, :booking_user_description, :booking_user_files, :vendor_id, :service_id, :booking_date)";
                 $stmt = $connection->prepare($sql);
                 $stmt->bindValue(":booking_id", $booking_id, PDO::PARAM_STR);
+                $stmt->bindValue(":booking_user_id", $booking_user_id, PDO::PARAM_STR);
                 $stmt->bindValue(":booking_user_name", $booking_user_name, PDO::PARAM_STR);
                 $stmt->bindValue(":booking_user_contact", $booking_user_contact, PDO::PARAM_STR);
                 $stmt->bindValue(":booking_user_email", $booking_user_email, PDO::PARAM_STR);
@@ -62,6 +65,61 @@
                     'msg' => 'Something went wrong. Details : ' . $th->getMessage()
                 ];
             }
+            return json_encode($this->response);
+        }
+        
+        public function get_booking($booking_id){
+            $this->booking_id = $booking_id;
+            
+            $connection = $this->open_connection();
+            
+            $sql = "SELECT * FROM bookings_table WHERE booking_id = :booking_id";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue(":booking_id", $booking_id, PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            
+            $this->response = $row;
+            
+            return json_encode($this->response);
+        }
+        
+        public function get_vendor_bookings($booking_id, $vendor_id){
+            $this->booking_id = $booking_id;
+            $this->vendor_id = $vendor_id;
+            
+            $connection = $this->open_connection();
+            
+            $sql = "SELECT * FROM bookings_table WHERE booking_id = :booking_id AND vendor_id = :vendor_id";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue(":booking_id", $booking_id, PDO::PARAM_STR);
+            $stmt->bindValue(":vendor_id", $vendor_id, PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            
+            $this->response = $row;
+            
+            return json_encode($this->response);
+        }
+        
+        public function get_user_bookings($booking_id, $booking_user_id){
+            $this->booking_id = $booking_id;
+            $this->booking_user_id = $booking_user_id;
+            
+            $connection = $this->open_connection();
+            
+            $sql = "SELECT * FROM bookings_table WHERE booking_id = :booking_id AND booking_user_id = :booking_user_id";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue(":booking_id", $booking_id, PDO::PARAM_STR);
+            $stmt->bindValue(":booking_user_id", $booking_user_id, PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            
+            $this->response = $row;
+            
             return json_encode($this->response);
         }
     }
