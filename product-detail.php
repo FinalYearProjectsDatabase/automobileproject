@@ -17,15 +17,27 @@
     <!--------------------------------- HEADER SECTION END --------------------------------->
 
     <?php
-        if(isset($_GET["product_id"]) && $_GET["product_id"] ?? ''){
+    
+        if(empty($_SESSION["user_id"])){
+            
+            
+            echo '<div class="alert alert-warning text-center"><h4>You need to login or create an account to proceed to checkout</h4></div>';
+            
+        }else{
+            
+            
+            if(isset($_GET["product_id"]) && $_GET["product_id"] ?? ''){
 
-            require 'controllers/ProductsClass.php';
+                require 'controllers/ProductsClass.php';
+    
+                $productObj = new ProductsClass;
+    
+                $products = $productObj->get_product($_GET["product_id"]);
+    
+                $response = json_decode($products);
+        
 
-            $productObj = new ProductsClass;
-
-            $products = $productObj->get_product($_GET["product_id"]);
-
-            $response = json_decode($products);
+        
 
     ?>
 
@@ -64,7 +76,6 @@
                         <div class="part-img mr-30">
                             <div class="img-box" id="bigPreview">
                                 <img src="../product-images/<?php echo $response->product_image?>" alt="Image">
-                                
                             </div>
                         </div>
                     </div>
@@ -75,24 +86,15 @@
                             <p class="price">GHc <?php echo $response->product_price?></p>
                             
                             <p class="dscr"><?php echo $response->product_description?></p>
-                            <form>
+                            <form method="POST" id="order" action="product-checkout.php" >
                                 <div class="row g-xl-4 g-3">
                                     <div class="col-lg-4 col-md-12 col-sm-4">
-                                        <div class="quantity-wrap">
+                                        <div class="mb-3">
                                             <label>QTY</label>
-                                            <div class="product-count">
-                                                <div class="quantity rapper-quantity">
-                                                    <input type="number" min="1" max="100" step="1" value="1" readonly name="order_quantity">
-                                                    <div class="quantity-nav">
-                                                        <div class="quantity-button quantity-down">
-                                                            <i class="fa-solid fa-minus"></i>
-                                                        </div>
-                                                        <div class="quantity-button quantity-up">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?? '' ?>">
+                                            <input type="hidden" name="price" value="<?php echo $response->product_price ?>">
+                                            <input type="hidden" name="product_id" value="<?php echo $response->product_id ?>">
+                                            <input type="number" min="1" max="100" step="1" value="1" name="order_quantity" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -110,6 +112,7 @@
 
     <?php
 
+            }
         }
 
     ?>
