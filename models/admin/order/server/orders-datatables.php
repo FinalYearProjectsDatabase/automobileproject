@@ -107,7 +107,7 @@ if($user_type == 1){
     );
 }else{
     $joinQuery = 'FROM `products_orders_view`';
-    $extraWhere = 'user_id = '.$user_id.'';
+    $extraWhere = '`user_id` = "'.$user_id.'"';
     
     echo json_encode(
         SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery, $extraWhere)
