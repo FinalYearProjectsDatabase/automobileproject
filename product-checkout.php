@@ -76,19 +76,19 @@
             if($responseUser->user_type == 2){
                 $clientObj = new ClientsClass;
                 $client = $clientObj->get_user_client($user_id);
-                $responseUser = json_decode($client);
-                $name = $responseUser->client_name;
-                $contact = $responseUser->client_contact;
-                $email = $responseUser->client_email;
-                $address = $responseUser->client_address;
+                $responseClientUser = json_decode($client);
+                $name = $responseClientUser->data->client_name;
+                $contact = $responseClientUser->data->client_contact;
+                $email = $responseClientUser->data->client_email;
+                $address = $responseClientUser->data->client_address;
             }elseif($responseUser->user_type == 3){
                 $vendorObj = new VendorsClass;
                 $vendor = $vendorObj->get_vendor_client($user_id);
-                $responseUser = json_decode($vendor);
-                $name = $responseUser->vendor_name;
-                $contact = $responseUser->vendor_contact;
-                $email = $responseUser->vendor_email;
-                $address = $responseUser->vendor_gps_address;
+                $responseVendorUser = json_decode($vendor);
+                $name = $responseVendorUser->data->vendor_name;
+                $contact = $responseVendorUser->data->vendor_contact;
+                $email = $responseVendorUser->data->vendor_email;
+                $address = $responseVendorUser->data->vendor_gps_address;
             }else{
                 $name = $responseUser->name;
                 $contact = '';
