@@ -13,9 +13,9 @@
         // method to redirect the logged in user to the specific page based on user type
         public function user_page_redirect($user_type){
             $this->user_type = $user_type;
-            if($user_type == 1){
+            // if($user_type == 1){
                 $this->redirect = "../../dashboard/";
-            }
+            // }
             return $this->redirect;
         }
 
@@ -107,6 +107,10 @@
         public function user_type_name($data){
             if($data == 1){
                 $name = 'Super Administrator' ?? '';
+            }elseif($data == 2){
+                $name = 'Client' ?? '';
+            }else{
+                $name = 'Vendor' ?? '';
             }
             return $name;
         }
