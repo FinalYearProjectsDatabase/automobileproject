@@ -14,7 +14,7 @@
 <!-- main content start -->
 <div class="main-content">
     <div class="dashboard-breadcrumb mb-30">
-        <h2>Booking</h2>
+        <h2>Orders</h2>
     </div>
     <div class="row">
         <div class="alert" id="alert-notice"></div>
@@ -24,15 +24,19 @@
                     <h4>TableView</h4>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-dashed recent-order-table" id="bookingsTable">
+                    <input type="hidden" id="user_id" value="<?php echo $user_id;?>">
+                    <input type="hidden" id="user_type" value="<?php echo $user_type;?>">
+                    <table class="table table-dashed recent-order-table" id="ordersTable">
                         <thead>
                             <tr>
-                                <th>Booking Date</th>
+                                <th>Ordering Date</th>
+                                <th>Order ID</th>
                                 <th>Client Name</th>
                                 <th>Client Contact</th>
                                 <th>Client Location</th>
-                                <th>Service Type</th>
-                                <th>Vendor Name</th>
+                                <th>Product Name</th>
+                                <th>Qty</th>
+                                <th>Amount Due</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -55,5 +59,5 @@
 
 <?php include ('../components/footer.php') ?>
 
-<script src="../../models/admin/booking/js/booking-script.js"></script>
-<script src="../../models/admin/booking/js/datatables-script.js"></script>
+<!-- <script src="../../models/admin/booking/js/booking-script.js"></script> -->
+<script src="../../models/admin/order/js/datatables-script.js"></script>
