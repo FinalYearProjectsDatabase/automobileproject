@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../../../../config/db-parameters.php');
 
 // set variables in new var
@@ -8,6 +9,11 @@ $sql_details = array(
     'pass' => PASSWORD,
     'db' => DATABASE
 );
+
+if(isset($_SESSION["user_id"]) && isset($_SESSION["user_type"])){
+    $user_id = $_SESSION["user_id"];
+    $user_type = $_SESSION["user_type"];
+}
 
 // table
 $table = 'bookings_table';
@@ -84,9 +90,27 @@ $columns = [
 // class to handle fetching of records
 require('../../../ssp.class.php');
 
-$joinQuery = 'FROM `bookings_view`';
+if($user_type == 1){
+    $joinQuery = 'FROM `bookings_view`';
 
-echo json_encode(
-    SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery)
-);
+    echo json_encode(
+        SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery)
+    );
+}elseif($user_type == 2){
+    $joinQuery = 'FROM `bookings_view`';
+    $extraWhere = '`booking_user_id` = "'.$user_id.'"';
+
+    echo json_encode(
+        SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery, $extraWhere)
+    );
+}else{
+    $joinQuery = 'FROM `bookings_view`';
+    $extraWhere = '`vendor_id` = "'.$user_id.'"';
+
+    echo json_encode(
+        SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery, $extraWhere)
+    );
+}
+
+
 
