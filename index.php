@@ -9,7 +9,9 @@
 
 <body class="rev-10-body">
     <!-- preloader -->
-    <?php require(__DIR__.'/components/index-preloader.php')?>
+    <?php 
+        // require(__DIR__.'/components/index-preloader.php')
+    ?>
 
     <!--------------------------------- PRODUCT QUICK VIEW PANEL START --------------------------------->
     <?php require(__DIR__.'/components/index-product-quick-view.php')?>

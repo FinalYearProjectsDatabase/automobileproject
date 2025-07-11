@@ -9,6 +9,7 @@
         protected $dsn = DSN;
         // connection variable for database connection from the db parameters file
         public $conn = null;
+        // public $db_status = null;
         
         public function open_connection(){
             try{
@@ -23,7 +24,7 @@
                 //     'status' => 'failed',
                 //     'msg' => 'Connection to DB failed to created. Error: ' . $th->getMessage()
                 // );
-                // $this->conn = $th->getMessage();
+                $this->conn = $th->getMessage();
             }
             return $this->conn;
             // return $db_status;

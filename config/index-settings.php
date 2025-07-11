@@ -2,7 +2,7 @@
 
     // base url helps in having correct links
     if(!defined('BASE_URL')){
-        define('BASE_URL', 'http://autofixproject.dev');
+        define('BASE_URL', 'http://autofixproject.test');
     }
 
     // project name

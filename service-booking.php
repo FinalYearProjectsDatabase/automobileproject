@@ -86,7 +86,11 @@
                                             <input type="text" name="user_booking_name" class="form-control" id="formGroupExampleInput">
                                             <input type="hidden" name="vendor_id" value="<?php echo $response->vendor_id?>">
                                             <input type="hidden" name="service_id" value="<?php echo $response->service_id?>">
-                                            <input type="hidden" name="user_booking_id" value="<?php echo $_SESSION['user_id']?>">
+                                            <?php if(isset($_SESSION['user_id'])){ ?>
+                                                <input type="hidden" name="user_booking_id" value="<?php echo $_SESSION['user_id'] ?>">
+                                            <?php }else{ ?>
+                                                <span class="text-danger">Please login to book this service</span>
+                                            <?php } ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="formGroupExampleInput">Contact</label>
@@ -118,9 +122,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-box mt-4">
-                                    <button type="submit" name="book_service" id="addToCart"><span><i class="fa-light fa-bookmark"></i></span>Book Service Now</button>
-                                </div>
+                                <?php if(isset($_SESSION['user_id'])){ ?>
+                                    <div class="btn-box mt-4">
+                                        <button type="submit" name="book_service" id="addToCart"><span><i class="fa-light fa-bookmark"></i></span>Book Service Now</button>
+                                    </div>
+                                <?php }else{ ?>
+                                    <span class="text-danger">Please login to book this service</span>
+                                <?php } ?>
+                                
                             </form>
                         </div>
                     </div>

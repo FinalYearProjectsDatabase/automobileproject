@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../../../../config/db-parameters.php');
 
 // set variables in new var
@@ -9,9 +10,9 @@ $sql_details = array(
     'db' => DATABASE
 );
 
-if(isset($_GET["user_id"]) && isset($_GET["user_type"])){
-    $user_id = $_GET["user_id"];
-    $user_type = $_GET["user_type"];
+if(isset($_SESSION["user_id"]) && isset($_SESSION["user_type"])){
+    $user_id = $_SESSION["user_id"];
+    $user_type = $_SESSION["user_type"];
 }
 
 // table
@@ -101,14 +102,12 @@ require('../../../ssp.class.php');
 
 if($user_type == 1){
     $joinQuery = 'FROM `products_orders_view`';
-    
     echo json_encode(
         SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery)
     );
 }else{
     $joinQuery = 'FROM `products_orders_view`';
     $extraWhere = '`user_id` = "'.$user_id.'"';
-    
     echo json_encode(
         SSP::simple($_GET, $sql_details, $table, $primary_key, $columns, $joinQuery, $extraWhere)
     );
